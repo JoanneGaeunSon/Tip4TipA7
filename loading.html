@@ -1,108 +1,163 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110188063-1"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110188063-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
 
-		  gtag('config', 'UA-110188063-1');
-		</script>
-
-		
-		<title>Tip4Tip</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-	</head>
-	<body>
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Header -->
-					<header id="header">
-						<div class="inner">
-
-							<!-- Logo -->
-								<a href="generic.html" class="logo">
-									<span class="symbol"></span><span class="title">< back</span>
-								</a>
-						</div>
-					</header>
+	gtag('config', 'UA-110188063-1');
+	</script>
 
 
-					<!-- Main -->
-					<div id="main">
-						<div class="inner">
-							<h1>Hold on, sit tight!</h1>
-			                <div>
-			                	<h2 id="loadingTime"></h2>
+	<title>Tip4Tip</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<div class="inner">
+
+				<!-- Logo -->
+				<a href="generic.html" class="logo">
+					<span class="symbol"></span><span class="title">< back</span>
+				</a>
+			</div>
+		</header>
 
 
-				                <p id="notificationAlert">Want a phone or email notification once you're connected?
-				                						  Leave your info below!</p>
-				                <form>
-					                <div class="form-group">
-					                	<label for="emailInput">Email address:</label>
-					                	<input type="email" class="form-control" id="emailInput">
-					               	</div>
-							        <div class="form-group">
-							            <label for="phoneInput">Phone number:</label>
-							            <input type="tel" class="form-control" id="phoneInput" placeholder="123-456-7890">
-							        </div>
-							        <div>
-					               		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" 
-					               		data-target="#myModal" id="submitButton">Submit</button>
+		<!-- Main -->
+		<div id="main">
+			<div class="inner">
+				<h1>Hold on, sit tight!</h1>
+				<div>
+					<h2 id="loadingTime"></h2>
 
-					               		<div id="myModal" class="modal fade" role="dialog">
-					               			<div class="modal-dialog">
-												<div class="modal-content">
-												    <div class="modal-header">
-												         <h4 class="modal-title">Alert Set!</h4>
-												    </div>
-												    <div class="modal-body">
-												        <p>Thanks for submitting your phone/email! 
-												        We'll notify you once you're connected with a tipster, so grab a cup of coffee while you wait!</p>
-												    </div>
-												        <div class="modal-footer">
-												        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-												    </div>
+					<p id="notificationAlert">Want a phone or email notification once you're connected?
+						Leave your info below!</p>
+						<div>
+							<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+							data-target="#infoModal" class="button">Get a Text!</button>
+
+							<div id="infoModal" class="modal fade" role="dialog">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4 class="modal-title">Get a Text!</h4>
+										</div>
+										<div class="modal-body">
+											<form>
+
+												<div class="form-group">
+													<label for="phoneInput">Phone number:</label>
+													<input type="tel" class="form-control" id="phoneInput" placeholder="123-456-7890">
+												</div>
+												<div>
+													<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+													data-target="#myModal" id="submitButton">Submit</button>
+
+													<div id="myModal" class="modal fade" role="dialog">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h4 class="modal-title">Alert Set!</h4>
+																</div>
+																<div class="modal-body">
+																	<p>Thanks for submitting your phone/email!
+																		We'll notify you once you're connected with a tipster, so grab a cup of coffee while you wait!</p>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div>
+								<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+								data-target="#info1Modal" class="button">Get an Email!</button>
+								<div id="info1Modal" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title">Get an Email!</h4>
+												</div>
+												<div class="modal-body">
+													<form>
+														<div class="form-group">
+															<label for="emailInput">Email address:</label>
+															<input type="email" class="form-control" id="emailInput">
+														</div>
+															<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+															data-target="#myModal" id="submitButton">Submit</button>
+															<div id="myModal" class="modal fade" role="dialog">
+																<div class="modal-dialog">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h4 class="modal-title">Alert Set!</h4>
+																		</div>
+																		<div class="modal-body">
+																			<p>Thanks for submitting your email!
+																				We'll notify you once you're connected with a tipster, so grab a cup of coffee while you wait!</p>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</form>
+													</div>
 												</div>
 											</div>
 										</div>
-					               	</div>
 
-					            </form>
-				                <div>
-				                  <p class="aboveButton">Wanna pretend you're connected?</p>
-				                  <a href="chat.html"><button class="ourButton">Start Typing
-				                  </button></a>
-				                </div>
-			             	</div>
+									</div>
+
+									<div>
+										<p class="aboveButton">Wanna pretend you're connected?</p>
+										<a href="chat.html"><button class="ourButton">Start Typing
+										</button></a>
+									</div>
+								</div>
+							</div>
 						</div>
+
+
+						<!-- Footer -->
+
 					</div>
 
-
-				<!-- Footer -->
-
-			</div>
-
-		<!-- Scripts -->
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-			<link rel="stylesheet" href="assets/css/main.css" />
-  			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+					<!-- Scripts -->
+					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+					<link rel="stylesheet" href="assets/css/main.css" />
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+					<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.0/jquery.fancybox.min.js"></script>
-  			<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.0/jquery.fancybox.min.css">
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.0/jquery.fancybox.min.js"></script>
+					<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.0/jquery.fancybox.min.css">
 
-      <script>
-        var n = 3;
-        $('#loadingTime').text("It's only gonna be " + n + " minutes.");
-      </script>
+					<script>
+					var n = 3;
+					$('#loadingTime').text("It's only gonna be " + n + " minutes.");
+					</script>
 
-	</body>
-</html>
+				</body>
+				</html>
