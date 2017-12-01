@@ -57,10 +57,10 @@
                                         </label>
                                     <form>
                                         <div class = "ownAmount">
-                                            <label for="c2">Choose your own amount:</label>
+                                            <label for="c2">OR choose your own amount:</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
-                                                <input type="number" value="0" min="0" max="100" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
+                                                <input type="number" value="0" min="0" max="100" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" placeholder="Write a number from 0-100 if you DID NOT select an option above" />
                                             </div>
                                         </div>
                                     </form>
@@ -87,7 +87,7 @@
                                                 <input type="text" class="form-control" id="expirationDate" placeholder="Month/Year, e.g., 03/2017">
                                             </div>
                                             <div>
-                                                <button type="button" class="ourButton" data-toggle="modal" 
+                                                <button type="button" class="ourButton" data-toggle="modal"
                                                 data-target="#payModal" class="ourButton">Confirm</button>
 
                                                 <div id="payModal" class="modal fade" role="dialog">

@@ -265,17 +265,6 @@ a{
     margin-right: 4px;
 }
 
-emoji{
-    display: inline-block;
-    height: 18px;
-    width: 18px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    margin-top: -7px;
-    margin-right: 2px;
-    transform: translate3d(0px, 3px, 0px);
-}
-
 ::-webkit-scrollbar {
     min-width: 12px;
     width: 12px;
