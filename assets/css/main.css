@@ -3273,3 +3273,8 @@
 	.helpTitle {
 		font-weight: bold;
 	}
+
+	.button-container {
+		display: inline-block;
+		margin: 10px;
+	}
