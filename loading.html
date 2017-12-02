@@ -31,8 +31,9 @@
 
 					<p id="notificationAlert">Want a phone or email notification once you're connected?
 						Leave your info below!</p>
+            <p id="notificationAlertBelow"></p>
 						<div class="button-container">
-							<button type="button" class="ourButton" data-toggle="modal"
+							<button type="button" id="getAText" class="ourButton" data-toggle="modal"
 							data-target="#infoModal" class="ourButton">Get a Text!</button>
 
 							<div id="infoModal" class="modal fade" role="dialog">
@@ -49,7 +50,7 @@
 													<input type="tel" class="form-control" id="phoneInput" placeholder="123-456-7890">
 												</div>
 												<div>
-													<button type="button" class="ourButton" data-toggle="modal"
+													<button id="submitPhone" type="button" class="ourButton" data-toggle="modal"
 													data-target="#myModal" id="submitButton">Submit</button>
 
 													<div id="myModal" class="modal fade" role="dialog">
@@ -59,7 +60,7 @@
 																	<h4 class="modal-title">Alert Set!</h4>
 																</div>
 																<div class="modal-body">
-																	<p>Thanks for submitting your phone/email!
+																	<p id="phoneSubmitText">Thanks for submitting your phone!
 																		We'll notify you once you're connected with a tipster, so grab a cup of coffee while you wait!</p>
 																	</div>
 																	<div class="modal-footer">
@@ -90,11 +91,11 @@
 													<form>
 														<div class="form-group">
 															<label for="emailInput">Email address:</label>
-															<input type="email" class="form-control" id="emailInput">
+															<input id="#emailAdd" type="email" class="form-control" id="emailInput">
 														</div>
 
 														<div>
-														<button type="button" class="ourButton" data-toggle="modal"
+														<button id="submitEmail" type="button" class="ourButton" data-toggle="modal"
 															data-target="#myModal1" id="submitButton">Submit</button>
 															<div id="myModal1" class="modal fade" role="dialog">
 																<div class="modal-dialog">
@@ -150,6 +151,122 @@
 					var n = 3;
 					$('#loadingTime').text("It's only gonna be " + n + " minutes.");
 					</script>
+
+          <script src="https://apis.google.com/js/api.js"></script>
+          <script>
+          //  function start() {
+          //    // Initializes the client with the API key and the Translate API.
+          //    gapi.client.init({
+          //      'apiKey': 'YOUR_API_KEY',
+          //      'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/translate/v2/rest'],
+          //    }).then(function() {
+          //      // Executes an API request, and returns a Promise.
+          //      // The method name `language.translations.list` comes from the API discovery.
+          //      return gapi.client.language.translations.list({
+          //        q: 'hello world',
+          //        source: 'en',
+          //        target: 'de',
+          //      });
+          //    }).then(function(response) {
+          //      console.log(response.result.data.translations[0].translatedText);
+          //    }, function(reason) {
+          //      console.log('Error: ' + reason.result.error.message);
+          //    });
+          //  };
+
+          //  // Loads the JavaScript client library and invokes `start` afterwards.
+          //  gapi.load('client', start);
+          //</script>
+          <script>
+          //  $("#submitEmail").click( function() {
+          //    var emailAdd = $("#emailAdd").val();
+          //    var values = [ [emailAdd], ];
+          //    var body = {
+          //      values: values
+          //    };
+          //    gapi.client.sheets.spreadsheets.values.update({
+          //       spreadsheetId: "16CjJA-TxUufuKemTseJkfIH3QV2dduvG5qCwQIc1Ays",
+          //       range: "Sheet1!A5:A6",
+          //       valueInputOption: valueInputOption,
+          //       resource: body
+          //    }).then((response) => {
+          //      var result = response.result;
+          //      console.log(`${result.updatedCells} cells updated.`);
+          //    });
+
+          //  )};
+          </script>
+          <script src="xml2json.js"></script>
+          <script>
+            console.log("adding click function to get text");
+            $("#submitPhone").click( function() {
+              var phoneNum = $("#phoneInput").val();
+              if(phoneNum){
+                phoneNum = phoneNum.replace(/\D/g,'');
+                phoneNum = "+1" + phoneNum;
+                console.log(phoneNum);
+                var SID = "AC69c32981bb0a6e32e29a940cd4683559";
+                var Key = "d3d5e6f4d73c46af8cf111085ea3c34b";
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'https://api.twilio.com/2010-04-01/Accounts/' + SID + '/Messages.json',
+                    data: {
+                        "To" : phoneNum,
+                        "From" : "+14159699409",
+                        "Body" : "Hi Anthony, your Tipster is waiting for you" +
+                        "at tip4tip.me/chat.html.\n\nDo not reply to this message."
+                    },
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader ("Authorization", "Basic " + btoa(SID + ':' + Key));
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        $("getAText").text("Send to Another Number");
+                        $("phoneSubmitText").text("You will recieve a text with" +
+                            "a url when a tipster is ready for you. You may exit" +
+                            "the app now.");
+                    },
+
+                    error: function(data) {
+                      console.log(data);
+                      $("#phoneSubmitText").text("Your phone number is not yet" +
+                          "verified. You will recieve a call to verify it." +
+                          "You only need to verify once.");
+                      $.ajax({
+                        type: 'POST',
+                        url: 'https://api.twilio.com/2010-04-01/Accounts/' +
+                          SID + '/OutgoingCallerIds',
+                        
+                        data: {
+                          'PhoneNumber' : phoneNum,
+                        },
+                        beforeSend: function (xhr) {
+                          xhr.setRequestHeader ("Authorization", "Basic " + btoa(SID + ':' + Key));
+                        },
+                        success: function(data) {
+                          console.log(data);
+                          json = $.xml2json(data);
+                          console.log(json);
+                          var code = (json['#document']['TwilioResponse']['ValidationRequest']['ValidationCode']);
+                          $("#phoneSubmitText").text("Your phone number is not yet" +
+                        "verified. You will recieve a call to verify it." +
+                        "You only need to verify once. Your verification code" + 
+                        "is: " +  code + "");
+                        $("#notificationAlertBelow").text("You should have" +
+                          " recieved a call. Once again your validation number" +
+                          "is " + code);
+                        },
+                        error: function(data) {
+                          $("#phoneSubmitText").text("The phone number your" +
+                              "provided is not valid");
+                        }
+                        });
+                    }
+                });
+              }
+            });
+          </script>
 
 				</body>
 				</html>
