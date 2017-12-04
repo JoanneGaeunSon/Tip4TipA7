@@ -27,14 +27,20 @@
 			<div class="inner">
 				<h1>Hold on, sit tight!</h1>
 				<div>
-					<h2 id="loadingTime"></h2>
+					<h2> Connecting you in: </h2>
+					<h2 id="clock"></h2>
+
+					<div class="alert alert-success" id="success-alert">
+					    <strong>Connected! </strong>
+					    You'll be brought to the chat page in a few seconds.
+					</div>
 
 					<p id="notificationAlert">Want a phone or email notification once you're connected?
 						Leave your info below!</p>
             <p id="notificationAlertBelow"></p>
 						<div class="button-container">
 							<button type="button" id="getAText" class="ourButton" data-toggle="modal"
-							data-target="#infoModal" class="ourButton">Get a Text!</button>
+							data-target="#infoModal">Get a Text!</button>
 
 							<div id="infoModal" class="modal fade" role="dialog">
 								<div class="modal-dialog">
@@ -80,7 +86,7 @@
 
 							<div class="button-container">
 								<button type="button" class="ourButton" data-toggle="modal"
-								data-target="#info1Modal" class="ourButton">Get an Email!</button>
+								data-target="#info1Modal" id="getAnEmail">Get an Email!</button>
 								<div id="info1Modal" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 										<div class="modal-content">
@@ -121,12 +127,6 @@
 										</div>
 
 									</div>
-
-									<div>
-										<p class="aboveButton">Wanna pretend you're connected?</p>
-										<a href="chat.html"><button class="ourButton">Start Typing
-										</button></a>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -146,11 +146,6 @@
 
 					<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.0/jquery.fancybox.min.js"></script>
 					<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.0/jquery.fancybox.min.css">
-
-					<script>
-					var n = 3;
-					$('#loadingTime').text("It's only gonna be " + n + " minutes.");
-					</script>
 
           <script src="https://apis.google.com/js/api.js"></script>
           <script>
@@ -267,6 +262,44 @@
               }
             });
           </script>
+
+          			<script>
+						$("#success-alert").hide();
+						var time_in_minutes = 2;
+						var current_time = Date.parse(new Date());
+						var deadline = new Date(current_time + time_in_minutes*60*1000);
+
+						function time_remaining(endtime){
+							var t = Date.parse(endtime) - Date.parse(new Date());
+							var seconds = Math.floor( (t/1000) % 60 );
+							var minutes = Math.floor( (t/1000/60) % 60 );
+							var hours = Math.floor( (t/(1000*60*60)) % 24 );
+							var days = Math.floor( t/(1000*60*60*24) );
+							return {'total':t, 'days':days, 'hours':hours, 'minutes':minutes, 'seconds':seconds};
+						}
+
+						function run_clock(id,endtime){
+							var clock = document.getElementById(id);
+							function update_clock(){
+								var t = time_remaining(endtime);
+								clock.innerHTML = t.minutes + ' minute(s) & ' + t.seconds + " seconds";
+								if(t.total<=0){ 
+									$("#success-alert").show();
+									$("#clock").remove()
+									$("#notificationAlert").remove()
+									$("#getAText").remove()
+									$("#getAnEmail").remove()
+									setTimeout(function() { window.location = "chat.html"}, 5000);   
+									clearInterval(timeinterval); 
+
+								}
+							}
+							update_clock(); // run function once at first to avoid delay
+							var timeinterval = setInterval(update_clock,1000);
+						}
+						run_clock('clock',deadline);
+
+					</script>
 
 				</body>
 				</html>
