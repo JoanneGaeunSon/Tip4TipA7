@@ -199,7 +199,7 @@
           <script src="xml2json.js"></script>
           <script>
             console.log("adding click function to get text");
-            $("#submitPhone").click( function() {
+            $("#phoneInput").submit( function() {
               var phoneNum = $("#phoneInput").val();
               if(phoneNum){
                 phoneNum = phoneNum.replace(/\D/g,'');
