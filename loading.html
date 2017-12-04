@@ -218,7 +218,7 @@
                         "To" : phoneNum,
                         "From" : "+14159699409",
                         "Body" : "\nHello, your Tipster is waiting for you" +
-                        "at https://joannegaeunson.github.io/Tip4TipFinal/chat.html.\n\nDo not reply to this message."
+                        "at https://www.tip4tip.me/chat.html.\n\nDo not reply to this message."
                     },
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader ("Authorization", "Basic " + btoa(SID + ':' + Key));
@@ -236,8 +236,8 @@
                     error: function(data) {
                       console.log(data);
                       $("#phoneSubmitText").text("Your phone number is not yet" +
-                          "verified. You will recieve a call to verify it." +
-                          "You only need to verify once.");
+                          " verified. You will recieve a call to verify it." +
+                          " You only need to verify once.");
                       $.ajax({
                         type: 'POST',
                         url: 'https://api.twilio.com/2010-04-01/Accounts/' +
