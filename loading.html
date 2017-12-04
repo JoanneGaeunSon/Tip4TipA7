@@ -193,8 +193,16 @@
           </script>
           <script src="xml2json.js"></script>
           <script>
+          $("#phoneInput").keypress(function(e) {
+              if(e.which == 13) {
+                  e.preventDefault();
+                  $("#submitPhone").click();
+                }
+              });
+          </script>
+          <script>
             console.log("adding click function to get text");
-            $("#phoneInput").submit( function() {
+            $("#submitPhone").click( function() {
               var phoneNum = $("#phoneInput").val();
               if(phoneNum){
                 phoneNum = phoneNum.replace(/\D/g,'');
@@ -217,10 +225,12 @@
                     },
                     success: function(data) {
                         console.log(data);
-                        $("getAText").text("Send to Another Number");
-                        $("phoneSubmitText").text("You will recieve a text with" +
-                            "a url when a tipster is ready for you. You may exit" +
-                            "the app now.");
+                        $("#getAText").text("Send to Another Number");
+                        $("#phoneSubmitText").text("You will recieve a text with" +
+                            " a url when a tipster is ready for you. You may exit" +
+                            " the app now.");
+                        $("#notificationAlertBelow").text("Subscribed to text " +
+                            "notifications with the number: " + phoneNum);
                     },
 
                     error: function(data) {
@@ -245,12 +255,13 @@
                           console.log(json);
                           var code = (json['#document']['TwilioResponse']['ValidationRequest']['ValidationCode']);
                           $("#phoneSubmitText").text("Your phone number is not yet" +
-                        "verified. You will recieve a call to verify it." +
-                        "You only need to verify once. Your verification code" + 
-                        "is: " +  code + "");
+                        " verified. You will recieve a call to verify it." +
+                        " You only need to verify once. Your verification code" + 
+                        " is: " +  code );
                         $("#notificationAlertBelow").text("You should have" +
-                          " recieved a call. Once again your validation number" +
-                          "is " + code);
+                          " recieved a call. After you validate, click 'Get a" +
+                          " text' to enable notifications. Once again your validation number" +
+                          " is " + code );
                         },
                         error: function(data) {
                           $("#phoneSubmitText").text("The phone number your" +
